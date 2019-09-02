@@ -8,7 +8,7 @@ const Table = props => {
   
   const renderPlates = array => {
     return array.map((x, index) => {
-      return <div className="empty-plate" style={{ top: -7 * index }} />;
+      return <div className="empty-plate" style={{ top: -7 * index }} key={x.id}/>;
     });
   };
 
@@ -24,7 +24,7 @@ const Table = props => {
                and renders an empty plate
                for every element in the array
             */
-          renderPlates([])}
+          renderPlates(props.eatenDishes)}
         </div>
       </div>
     </Fragment>

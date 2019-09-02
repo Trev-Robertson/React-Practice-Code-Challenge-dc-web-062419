@@ -10,8 +10,6 @@ class App extends Component {
     moneyLeft: 200,
     allDishes: [],
     eatenDishes: [],
-    currentDishes: [],
-    currentGroupIndexStart: 0
   };
 
   componentDidMount = () => {
