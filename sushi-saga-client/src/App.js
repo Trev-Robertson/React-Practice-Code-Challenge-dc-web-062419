@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import SushiContainer from "./containers/SushiContainer";
 import Table from "./containers/Table";
-import SushiWallet from './components/SushiWallet'
+import SushiWallet from "./components/SushiWallet";
 
 // Endpoint!
 const API = "http://localhost:3000/sushis";
@@ -10,7 +10,7 @@ class App extends Component {
   state = {
     moneyLeft: 200,
     allDishes: [],
-    eatenDishes: [],
+    eatenDishes: []
   };
 
   componentDidMount = () => {
@@ -30,21 +30,23 @@ class App extends Component {
       this.setState({
         eatenDishes: update,
         moneyLeft: this.state.moneyLeft - sushi.price
-      })
-    }
-    else{
-      alert("You don't have enough $$$ for this item. Please add more funds")
+      });
+    } else {
+      alert("You don't have enough $$$ for this item. Please add more funds");
     }
   };
 
-  addMoney = (event) => {
-    event.preventDefault()
-    this.setState({
-     moneyLeft: this.state.moneyLeft + parseInt(event.target.amount.value)
-    }, event.target.reset())
-    
-    
-  }
+  addMoney = event => {
+    event.preventDefault();
+    if (event.target.amount.value) {
+      this.setState(
+        {
+          moneyLeft: this.state.moneyLeft + parseInt(event.target.amount.value)
+        },
+        event.target.reset()
+      );
+    }
+  };
 
   render() {
     return (
@@ -60,7 +62,7 @@ class App extends Component {
           eatenDishes={this.state.eatenDishes}
         />
 
-        <SushiWallet addMoney={this.addMoney}/>
+        <SushiWallet addMoney={this.addMoney} />
       </div>
     );
   }
