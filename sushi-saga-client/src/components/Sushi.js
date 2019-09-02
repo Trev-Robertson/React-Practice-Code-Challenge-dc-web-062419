@@ -6,7 +6,7 @@ const Sushi = props => {
 
   return (
     <div className="sushi">
-      <div className="plate" onClick={() => props.eatenDish(props.sushi)}>
+      <div className="plate" onClick={props.boughtDishes.includes(props.sushi) ? null : () => props.eatenDish(props.sushi)}>
         {props.boughtDishes.includes(props.sushi) ? null : 
         <img src={props.sushi.img_url} width="100%" alt=""/>
         }
