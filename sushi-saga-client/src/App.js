@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import SushiContainer from "./containers/SushiContainer";
 import Table from "./containers/Table";
+import SushiWallet from './components/SushiWallet'
 
 // Endpoint!
 const API = "http://localhost:3000/sushis";
@@ -32,9 +33,18 @@ class App extends Component {
       })
     }
     else{
-      alert("You don't have enough $$$ for this item")
+      alert("You don't have enough $$$ for this item. Please add more funds")
     }
   };
+
+  addMoney = (event) => {
+    event.preventDefault()
+    this.setState({
+     moneyLeft: this.state.moneyLeft + parseInt(event.target.amount.value)
+    }, event.target.reset())
+    
+    
+  }
 
   render() {
     return (
@@ -49,6 +59,8 @@ class App extends Component {
           moneyLeft={this.state.moneyLeft}
           eatenDishes={this.state.eatenDishes}
         />
+
+        <SushiWallet addMoney={this.addMoney}/>
       </div>
     );
   }
